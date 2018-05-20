@@ -27,16 +27,43 @@ defmodule Australia do
     |> post(q, nsw, &!=/2)
     |> post(nsw, v, &!=/2)
 
-    # this gives a "preference against :red"
+    # prefer blues so that we have plenty of them
     for v <- variables do
       problem
       |> post(v, fn
-        :red -> 1
-        _ -> 0
+        :blue -> 0
+        _ -> 1
       end)
     end
+    
+    # exactly 3 blues!
+    problem
+    |> post(variables, fn vars ->
+      blue_count =
+        Enum.count(vars, fn
+          :blue -> true
+          _ -> false
+        end)
+      blue_count == 3
+    end)
+  end
 
+  def solve(problem) do
     problem
     |> Aruspex.Strategy.SimulatedAnnealing.set_strategy()
+    |> Enum.take(1)
+  end
+
+  def solve!(problem) do
+    Stream.repeatedly(fn -> solve(problem) end)
+    |> Stream.with_index()
+    |> Enum.reduce_while(nil, fn
+      {[], index}, acc when index < 3 ->
+        {:cont, nil}
+      {[], index}, acc ->
+        {:halt, :exhausted}
+      {[solution], index}, acc ->
+        {:halt, {solution, index}}
+    end)
   end
 end

@@ -1,5 +1,5 @@
 %{
-  "aruspex": {:git, "https://github.com/dkendal/aruspex.git", "101ad12f5213f5039c20b59c35e162db4a5eae57", []},
+  "aruspex": {:git, "https://github.com/oyeb/aruspex.git", "5ca5ca6057b61b2bc19a58abd3a5a656c39d0249", [branch: "tweaks"]},
   "exyz": {:hex, :exyz, "1.0.0", "9cc0cbdd0480c261a5d05ff72b294968b9ff69983efc392b78f6e584acfaf957", [:mix], [], "hexpm"},
   "zipper_tree": {:hex, :zipper_tree, "0.1.1", "e4d4a2bfdf958fea0aaf844e1b3ef457ea11d6331ba77a043b6b5606f6222a47", [:mix], [], "hexpm"},
 }

@@ -26,9 +26,9 @@ defmodule ColorNew do
       |> post(:p1, :p3, & not(&1 and &2))
       |> post(:p2, :p3, & not(&1 and &2))
       |> post(:p2, :p4, & not(&1 and &2))
-      |> post([:p1, :p2, :p3, :p4], fn variables -> 
-        Enum.filter()
-      end)
+      # |> post([:p1, :p2, :p3, :p4], fn variables -> 
+      #   Enum.filter()
+      # end)
 
     result = problem |> Aruspex.Strategy.SimulatedAnnealing.set_strategy() |> Enum.take(1)
   end
